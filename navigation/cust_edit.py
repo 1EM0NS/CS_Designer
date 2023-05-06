@@ -3,18 +3,19 @@ import sys
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QMessageBox
 import pymysql
-from qfluentwidgets import InfoBar, InfoBarPosition,LineEdit,PushButton,TextEdit,SpinBox
+from qfluentwidgets import InfoBar, InfoBarPosition, LineEdit, PushButton, TextEdit, SpinBox, ComboBox
+
 
 class Cust_edit(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.flag = 0
         # 创建界面上的各个控件
         self.lbl_id = TextEdit()
-        self.lbl_id.setText('1.输入客户id获取客户信息\n2.直接修改信息后提交即可')
+        self.lbl_id.setText('─=≡Σ(((つ•̀ω•́)つ')
         self.lbl_id.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
-            'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:20px;}')
+            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:50px;font-family:"Microsoft YaHei", sans-serif;}'
+            'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.lbl_id.setReadOnly(True)
 
         self.edit_id = SpinBox()
@@ -36,10 +37,15 @@ class Cust_edit(QWidget):
         self.lbl_password = QLabel('密码：')
         self.edit_password = LineEdit()
         self.btn_submit = PushButton('提交')
+        self.comboBox = ComboBox(self)
+        self.comboBox.addItems(['修改', '删除', '新增'])
+        self.comboBox.currentIndexChanged.connect(self.selectionchange)
+        self.comboBox.setCurrentIndex(0)
 
         # 创建布局并将控件添加到布局中
         hbox_id = QHBoxLayout()
         hbox_id.addWidget(self.lbl_id)
+        hbox_id.addWidget(self.comboBox)
         hbox_id.addWidget(self.edit_id)
         hbox_id.addWidget(self.btn_search)
         hbox_name = QHBoxLayout()
@@ -70,6 +76,7 @@ class Cust_edit(QWidget):
         hbox_submit.addStretch(1)
         hbox_submit.addWidget(self.btn_submit)
 
+
         vbox = QVBoxLayout()
         vbox.addLayout(hbox_id)
         vbox.addLayout(hbox_name)
@@ -91,6 +98,17 @@ class Cust_edit(QWidget):
         # 设置窗口属性
         self.setWindowTitle('客户信息')
         self.setGeometry(300, 300, 400, 300)
+
+    def selectionchange(self):
+        if self.comboBox.currentIndex() == 0:
+            self.btn_submit.setText('提交')
+            self.flag = 0
+        elif self.comboBox.currentIndex() == 1:
+            self.btn_submit.setText('删除')
+            self.flag = 1
+        elif self.comboBox.currentIndex() == 2:
+            self.btn_submit.setText('新增')
+            self.flag = 2
     def search_customer_info(self):
         # 获取客户编号
         cust_id = self.edit_id.text()
@@ -124,7 +142,7 @@ class Cust_edit(QWidget):
                 self.edit_hometown.setText('')
                 self.edit_username.setText('')
                 self.edit_password.setText('')
-                QMessageBox.information(self, '提示', '客户编号不存在！')
+                QMessageBox.information(self, '提示','客户编号不存在！')
         cursor.close()
         cnx.close()
 
@@ -147,26 +165,55 @@ class Cust_edit(QWidget):
                                   password='1784',
                                   database='餐饮管理系统')
             cursor = cnx.cursor()
-            update_query = ("UPDATE customer SET name=%s, contact=%s, gender=%s, id_card=%s, ethnicity=%s, hometown=%s, username=%s, password=%s WHERE cust_id=%s")
-            data = (name, contact, gender, id_card, ethnicity, hometown, username, password, cust_id)
-            cursor.execute(update_query, data)
-            cnx.commit()
-            print(f"客户信息更新成功，客户编号为：{cust_id}")
-            InfoBar.success(
-                title='成功',
-                content=f"客户信息更新成功，客户编号为：{cust_id}",
-                orient=QtCore.Qt.Horizontal,
-                isClosable=True,
-                position=InfoBarPosition.TOP,
-                duration=3000,  # won't disappear automatically
-                parent=self,
-
-            )
+            if self.flag == 0:
+                update_query = ("UPDATE customer SET name=%s, contact=%s, gender=%s, id_card=%s, ethnicity=%s, hometown=%s, username=%s, password=%s WHERE cust_id=%s")
+                data = (name, contact, gender, id_card, ethnicity, hometown, username, password, cust_id)
+                cursor.execute(update_query, data)
+                cnx.commit()
+                print(f"客户信息修改成功，客户编号为：{cust_id}")
+                InfoBar.success(
+                    title='成功',
+                    content=f"客户信息更新成功，客户编号为：{cust_id}",
+                    orient=QtCore.Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.TOP,
+                    duration=3000,  # won't disappear automatically
+                    parent=self,
+                    )
+            if  self.flag == 1:
+                delete_query = ("DELETE FROM customer WHERE cust_id=%s")
+                cursor.execute(delete_query, (cust_id,))
+                cnx.commit()
+                print(f"客户信息删除成功，客户编号为：{cust_id}")
+                InfoBar.success(
+                    title='成功',
+                    content=f"客户信息删除成功，客户编号为：{cust_id}",
+                    orient=QtCore.Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.TOP,
+                    duration=3000,  # won't disappear automatically
+                    parent=self,
+                )
+            if self.flag == 2:
+                add_query = (
+                    "INSERT INTO customer(username, password,name,contact,gender,id_card,ethnicity,hometown) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
+                data = (username, password,name,contact,gender,id_card,ethnicity,hometown)
+                cursor.execute(add_query, data)
+                cnx.commit()
+                InfoBar.success(
+                    title='成功',
+                    content=f"客户信息新增成功",
+                    orient=QtCore.Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.TOP,
+                    duration=3000,  # won't disappear automatically
+                    parent=self,
+                )
         except Exception as e:
             print(e)
             InfoBar.warning(
                 title='警告',
-                content=f"客户信息更新失败，客户编号为：{cust_id}",
+                content=f"客户信息修改失败，客户编号为：{cust_id}",
                 orient=QtCore.Qt.Horizontal,
                 isClosable=True,
                 position=InfoBarPosition.TOP,
@@ -175,7 +222,6 @@ class Cust_edit(QWidget):
 
             )
             cnx.rollback()
-            QMessageBox.information(self, '提示', '客户信息更新失败！')
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     customer_info = Cust_edit()
