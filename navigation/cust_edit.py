@@ -1,3 +1,4 @@
+import datetime
 import sys
 
 from PyQt5 import QtCore
@@ -12,9 +13,9 @@ class Cust_edit(QWidget):
         self.flag = 0
         # 创建界面上的各个控件
         self.lbl_id = TextEdit()
-        self.lbl_id.setText('─=≡Σ(((つ•̀ω•́)つ')
+        self.lbl_id.setText('')
         self.lbl_id.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:50px;font-family:"Microsoft YaHei", sans-serif;}'
+            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
             'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.lbl_id.setReadOnly(True)
 
@@ -101,7 +102,7 @@ class Cust_edit(QWidget):
 
     def selectionchange(self):
         if self.comboBox.currentIndex() == 0:
-            self.btn_submit.setText('提交')
+            self.btn_submit.setText('修改')
             self.flag = 0
         elif self.comboBox.currentIndex() == 1:
             self.btn_submit.setText('删除')
@@ -170,14 +171,15 @@ class Cust_edit(QWidget):
                 data = (name, contact, gender, id_card, ethnicity, hometown, username, password, cust_id)
                 cursor.execute(update_query, data)
                 cnx.commit()
-                print(f"客户信息修改成功，客户编号为：{cust_id}")
+                time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                self.lbl_id.insertPlainText(time + "：修改客户成功🥰\n")
                 InfoBar.success(
                     title='成功',
                     content=f"客户信息更新成功，客户编号为：{cust_id}",
                     orient=QtCore.Qt.Horizontal,
                     isClosable=True,
-                    position=InfoBarPosition.TOP,
-                    duration=3000,  # won't disappear automatically
+                    position=InfoBarPosition.TOP_RIGHT,
+                    duration=1200,  # won't disappear automatically
                     parent=self,
                     )
             if  self.flag == 1:
@@ -185,13 +187,15 @@ class Cust_edit(QWidget):
                 cursor.execute(delete_query, (cust_id,))
                 cnx.commit()
                 print(f"客户信息删除成功，客户编号为：{cust_id}")
+                time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                self.lbl_id.insertPlainText(time + "：删除客户成功🥰\n")
                 InfoBar.success(
                     title='成功',
                     content=f"客户信息删除成功，客户编号为：{cust_id}",
                     orient=QtCore.Qt.Horizontal,
                     isClosable=True,
-                    position=InfoBarPosition.TOP,
-                    duration=3000,  # won't disappear automatically
+                    position=InfoBarPosition.TOP_RIGHT,
+                    duration=1200,  # won't disappear automatically
                     parent=self,
                 )
             if self.flag == 2:
@@ -200,24 +204,28 @@ class Cust_edit(QWidget):
                 data = (username, password,name,contact,gender,id_card,ethnicity,hometown)
                 cursor.execute(add_query, data)
                 cnx.commit()
+                time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                self.lbl_id.insertPlainText(time + "：新增客户成功🥰\n")
                 InfoBar.success(
                     title='成功',
                     content=f"客户信息新增成功",
                     orient=QtCore.Qt.Horizontal,
                     isClosable=True,
-                    position=InfoBarPosition.TOP,
-                    duration=3000,  # won't disappear automatically
+                    position=InfoBarPosition.TOP_RIGHT,
+                    duration=1200,  # won't disappear automatically
                     parent=self,
                 )
         except Exception as e:
             print(e)
+            time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            self.lbl_id.insertPlainText(time + "：信息修改失败！\n")
             InfoBar.warning(
                 title='警告',
                 content=f"客户信息修改失败，客户编号为：{cust_id}",
                 orient=QtCore.Qt.Horizontal,
                 isClosable=True,
                 position=InfoBarPosition.TOP,
-                duration=3000,  # won't disappear automatically
+                duration=1000,  # won't disappear automatically
                 parent=self,
 
             )

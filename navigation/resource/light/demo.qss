@@ -3,16 +3,15 @@ Widget > QLabel {
     border-radius: 10px;
 }
 Widget {
-    border: 1px solid rgb(229, 229, 229);
+    border: 1px solid rgb(240, 240, 240);
     border-right: none;
     border-bottom: none;
     border-top-left-radius: 10px;
-    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(255, 255, 255,230), stop:1 rgba(50, 50, 200,245));
-
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 rgba(255, 255, 255,230),stop:0.2 rgba(231, 119, 183,230) ,stop:0.3 rgba(122, 162, 135,230),stop:1 rgba(57, 233, 221,200));
 }
 
 Window {
     border: 1px solid rgb(229, 229, 229);
-    background-color: rgb(243, 243, 243);
-}
+    background-color: rgb(255, 255, 255);
+    boder-top-left-radius: 10px;}
 

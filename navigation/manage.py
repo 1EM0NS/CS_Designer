@@ -6,7 +6,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QPalette
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel, QTableWidgetItem, QWidget
-
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme, setThemeColor)
 from qfluentwidgets import FluentIcon as FIF
@@ -14,6 +13,8 @@ from qframelesswindow import FramelessWindow, StandardTitleBar
 from qfluentwidgets import TableWidget, setTheme, Theme, TableView
 from navigation.cust_search import Cust_search
 from navigation.cust_edit import Cust_edit
+from navigation.emp_search import Emp_search
+from navigation.emp_edit import Emp_edit
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -32,7 +33,7 @@ class AvatarWidget(NavigationWidget):
 
     def __init__(self, parent=None):
         super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('resource/t.png').scaled(
+        self.avatar = QImage('/resource/t.png').scaled(
             24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def paintEvent(self, e):
@@ -81,17 +82,31 @@ class Window(FramelessWindow):
         self.navigationInterface = NavigationInterface(self, showMenuButton=True)
         self.stackWidget = QStackedWidget(self)
 
-        # create sub interface
-        self.cust_searchInterface = Cust_search()
-
-        self.cust_editInterface = Widget('客户信息编辑', self)
+        # 这里是界面定义部分
+        #客户查询部分#todo
+        self.cust_searchInterface = Widget('客户查询', self)
+        self.cust_searchInterface.hBoxLayout.addWidget(Cust_search())
+        self.cust_searchInterface.hBoxLayout.removeWidget(self.cust_searchInterface.label)
+        self.cust_searchInterface.label.deleteLater()
+        #客户操作部分
+        self.cust_editInterface = Widget('客户操作', self)
         self.cust_editInterface.hBoxLayout.addWidget(Cust_edit())
         self.cust_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
         self.cust_editInterface.label.deleteLater()
+        #员工查询部分
+        self.emp_searchInterface = Widget('员工查询', self)
+        self.emp_searchInterface.hBoxLayout.addWidget(Emp_search())
+        self.emp_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.emp_searchInterface.label.deleteLater()
+        #员工操作部分
+        self.emp_editInterface = Widget('员工操作', self)
+        self.emp_editInterface.hBoxLayout.addWidget(Emp_edit())
+        self.emp_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.emp_editInterface.label.deleteLater()
 
-        self.musicInterface = Widget('Music Interface', self)
-        self.videoInterface = Widget('Video Interface', self)
-        self.folderInterface = Widget('Folder Interface', self)
+        # self.musicInterface = Widget('Music Interface', self)
+        # self.videoInterface = Widget('Video Interface', self)
+        # self.folderInterface = Widget('Folder Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
 
         # 添加自定义部件（MyWidget）
@@ -112,17 +127,20 @@ class Window(FramelessWindow):
         self.hBoxLayout.addWidget(self.stackWidget)
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
-    def initNavigation(self):
-        self.addSubInterface(self.cust_searchInterface, FIF.SEARCH, '客户信息查询')
-        self.addSubInterface(self.cust_editInterface, FIF.EDIT, '客户信息编辑')
-        self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
+    def initNavigation(self):#todo
+        self.addSubInterface(self.cust_searchInterface, FIF.SEARCH, '客户查询')
+        self.addSubInterface(self.cust_editInterface, FIF.EDIT, '客户操作')
+        # 来个分隔符号
+        self.navigationInterface.addSeparator()
+        self.addSubInterface(self.emp_searchInterface, FIF.MUSIC, '员工查询')
+        self.addSubInterface(self.emp_editInterface, FIF.VIDEO, '员工操作')
 
-        self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
+        # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
         self.navigationInterface.addSeparator()
 
         # add navigation items to scroll area
-        self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
+        # self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
         # for i in range(1, 21):
         #     self.navigationInterface.addItem(
         #         f'folder{i}',
@@ -153,7 +171,7 @@ class Window(FramelessWindow):
 
     def initWindow(self):
         self.resize(900, 700)
-        self.setWindowIcon(QIcon('resource/t.png'))
+        self.setWindowIcon(QIcon('/resource/t.png'))
         self.setWindowTitle('餐饮系统后台管理')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
