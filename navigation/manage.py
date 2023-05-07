@@ -2,12 +2,12 @@
 import sys
 
 import pymysql
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QPalette
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel, QTableWidgetItem, QWidget
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
-                            isDarkTheme, setTheme, Theme, setThemeColor)
+                            isDarkTheme, setTheme, Theme, setThemeColor, InfoBar, InfoBarPosition)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from qfluentwidgets import TableWidget, setTheme, Theme, TableView
@@ -39,7 +39,7 @@ class AvatarWidget(NavigationWidget):
 
     def __init__(self, parent=None):
         super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('resource/t.png').scaled(
+        self.avatar = QImage('C:/Users/User\Desktop\计算机软件综合实验\计算机软件综合实验/navigation/resource/t.png').scaled(
             24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def paintEvent(self, e):
@@ -225,7 +225,7 @@ class Window(FramelessWindow):
 
     def initWindow(self):
         self.resize(1200, 700)
-        self.setWindowIcon(QIcon('resource/t.png'))
+        self.setWindowIcon(QIcon('C:/Users/User\Desktop\计算机软件综合实验\计算机软件综合实验/navigation/resource/t.png'))
         self.setWindowTitle('餐饮系统后台管理')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
@@ -260,12 +260,44 @@ class Window(FramelessWindow):
         self.navigationInterface.setCurrentItem(widget.objectName())
 
     def showMessageBox(self):
-        w = MessageBox(
-            'This is a help message',
-            'You clicked a customized navigation widget. You can add more custom widgets by calling `NavigationInterface.addWidget()` 😉',
-            self
+        # w = MessageBox('路漫漫其修远兮，吾将上下而求索',self)
+        InfoBar.info(
+            title='',
+            content=f"悲剧并非终结，而是希望的起始",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
         )
-        w.exec()
+        InfoBar.info(
+            title='',
+            content=f"悲剧并非终结，而是希望的起始",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_RIGHT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
+        InfoBar.info(
+            title='',
+            content=f"悲剧并非终结，而是希望的起始",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
+        InfoBar.info(
+            title='',
+            content=f"悲剧并非终结，而是希望的起始",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP_RIGHT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
+        # w.exec()
 
 
 if __name__ == '__main__':

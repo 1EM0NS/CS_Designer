@@ -85,7 +85,6 @@ class Dish_search(QWidget):
         self.hBoxLayout.addWidget(self.pushButton)
 
         self.vBoxLayout.addWidget(self.tableView)
-        self.resize(625, 700)
         self.function()
 
     def function(self):

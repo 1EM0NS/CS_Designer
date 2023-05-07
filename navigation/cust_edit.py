@@ -96,9 +96,6 @@ class Cust_edit(QWidget):
         self.btn_search.clicked.connect(self.search_customer_info)
         self.btn_submit.clicked.connect(self.submit_customer_info)
 
-        # 设置窗口属性
-        self.setWindowTitle('客户信息')
-        self.setGeometry(300, 300, 400, 300)
 
     def selectionchange(self):
         if self.comboBox.currentIndex() == 0:

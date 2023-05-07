@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
 from PyQt5.QtGui import QCursor
+from PyQt5.QtWidgets import QDesktopWidget
 from qfluentwidgets import InfoBarIcon, InfoBar, InfoBarPosition
 import resources_rc
 from register.register import RegisterDialog
@@ -367,8 +368,11 @@ class Ui_MainWindow(object):
         )
         #todo: 进入系统
         c = Window()
-        c.show()
         self.close()
+        c.show()
+
+
+
         print("员工登录成功")
     def tips(self):
         InfoBar.warning(

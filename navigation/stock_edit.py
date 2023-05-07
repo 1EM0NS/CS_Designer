@@ -24,9 +24,9 @@ class Stock_edit(QWidget):
             'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
             'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.action_combo = ComboBox()
-        self.action_combo.addItem("新增员工")
-        self.action_combo.addItem("修改员工")
-        self.action_combo.addItem("删除员工")
+        self.action_combo.addItem("新增原材料")
+        self.action_combo.addItem("修改原材料")
+        self.action_combo.addItem("删除原材料")
         self.action_combo.setCurrentIndex(1)
         self.action_combo.currentIndexChanged.connect(self.on_action_combo_changed)
 
@@ -76,9 +76,6 @@ class Stock_edit(QWidget):
 
         self.setLayout(hbox)
 
-        self.setWindowTitle('员工管理系统')
-        self.setGeometry(300, 300, 500, 200)
-        self.show()
 
         self.db = pymysql.connect(host='localhost',
                                  user='root',
@@ -97,11 +94,11 @@ class Stock_edit(QWidget):
         result = self.cursor.fetchone()
 
         if result:
-            self.username_edit.setText(result[1])
-            self.name_edit.setText(result[2])
-            self.gender_edit.setText(result[3])
-            self.password_edit.setText(result[4])
-            self.contact_edit.setText(result[5])
+            self.username_edit.setText(str(result[1]))
+            self.name_edit.setText(str(result[2]))
+            self.gender_edit.setText(str(result[3]))
+            self.password_edit.setText(str(result[4]))
+            self.contact_edit.setText(str(result[5]))
         else:
             InfoBar.error(
                 title='错误',
@@ -151,13 +148,17 @@ class Stock_edit(QWidget):
 
     def on_action_combo_changed(self, index):
         if index == 0:
-            self.emp_id_edit.setEnabled(False)
+            self.emp_id_edit.setEnabled(True)
+            self.username_edit.setEnabled(True)
+            self.name_edit.setEnabled(True)
+            self.gender_edit.setEnabled(True)
+            self.password_edit.setEnabled(True)
+            self.contact_edit.setEnabled(True)
             self.username_edit.setText("")
             self.name_edit.setText("")
             self.gender_edit.setText("")
             self.password_edit.setText("")
             self.contact_edit.setText("")
-            self.hometown_edit.setText("")
             self.submit_btn.setText("新增原材料")
             self.submit_btn.clicked.disconnect()
             self.submit_btn.clicked.connect(self.add_employee)
@@ -168,8 +169,7 @@ class Stock_edit(QWidget):
             self.gender_edit.setEnabled(True)
             self.password_edit.setEnabled(True)
             self.contact_edit.setEnabled(True)
-            self.hometown_edit.setEnabled(True)
-            self.submit_btn.setText("更新员工")
+            self.submit_btn.setText("修改原材料")
             self.submit_btn.clicked.disconnect()
             self.submit_btn.clicked.connect(self.update_employee)
         elif index == 2:
@@ -179,8 +179,7 @@ class Stock_edit(QWidget):
             self.gender_edit.setEnabled(False)
             self.password_edit.setEnabled(False)
             self.contact_edit.setEnabled(False)
-            self.hometown_edit.setEnabled(False)
-            self.submit_btn.setText("删除员工")
+            self.submit_btn.setText("删除原材料")
             self.submit_btn.clicked.disconnect()
             self.submit_btn.clicked.connect(self.delete_employee)
 

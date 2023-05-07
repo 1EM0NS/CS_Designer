@@ -71,9 +71,6 @@ class Order_edit(QWidget):
 
         self.setLayout(hbox)
 
-        self.setWindowTitle('员工管理系统')
-        self.setGeometry(300, 300, 500, 200)
-        self.show()
 
         self.db = pymysql.connect(host='localhost',
                                  user='root',

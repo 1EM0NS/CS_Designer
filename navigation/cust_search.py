@@ -33,7 +33,6 @@ class Cust_search(QWidget):
 
         self.comboBox.move(200, 200)
 
-        self.resize(500, 500)
         self.setStyleSheet('Demo{background:white}')
 
         self.pushButton = PushButton('开始查询', self, FIF.SEARCH)
