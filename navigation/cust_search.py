@@ -68,8 +68,8 @@ class Cust_search(QWidget):
                             outline: 0;
                             font-size: 14px;
                             color: #000;
-                            
-                         
+
+
             }
             QTableView::item {
         padding-top: 20px; /* 设置上边距 */

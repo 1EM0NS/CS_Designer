@@ -115,6 +115,7 @@ class Dish_search(QWidget):
 
     def refresh(self):
         # 刷新
+
         db = pymysql.connect(host='localhost',
                              user='root',
                              password='1784',
@@ -122,6 +123,7 @@ class Dish_search(QWidget):
         cursor = db.cursor()
         cursor.execute("select * from dish")
         data = cursor.fetchall()
+        self.tableView.setRowCount(len(data))
         print(data)
         info = data
         # 清空table

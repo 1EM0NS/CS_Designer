@@ -65,7 +65,7 @@ class AvatarWidget(NavigationWidget):
             font = QFont('Segoe UI')
             font.setPixelSize(14)
             painter.setFont(font)
-            painter.drawText(QRect(44, 0, 255, 36), Qt.AlignVCenter, 'zhiyiYo')
+            painter.drawText(QRect(44, 0, 255, 50), Qt.AlignVCenter, '旧区的餐饮管理系统')
 
 
 class Window(FramelessWindow):
@@ -81,7 +81,7 @@ class Window(FramelessWindow):
         setThemeColor('#724CAF')
 
         self.hBoxLayout = QHBoxLayout(self)
-        self.navigationInterface = NavigationInterface(self, showMenuButton=True)
+        self.navigationInterface = NavigationInterface(self, showMenuButton=True,showReturnButton=True)
         self.navigationInterface.setStyleSheet("QWidget { background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(236, 123, 163,230),stop:0.4 rgba(179, 214, 54,230) ,stop:0.6 rgba(57, 233, 221,230),stop:1 rgba(57, 233, 221,200));border : 3px solid rgba(200, 200, 255,120);border-radius: 20px;}")
 
         self.stackWidget = QStackedWidget(self)
@@ -151,8 +151,8 @@ class Window(FramelessWindow):
         self.addSubInterface(self.emp_editInterface, FIF.PENCIL_INK, '员工操作')
         self.navigationInterface.addSeparator()
         # 来个分隔符号
-        self.addSubInterface(self.dish_searchInterface, FIF.VIEW, '菜品查询')
-        self.addSubInterface(self.dish_editInterface, FIF.PENCIL_INK, '菜品操作')
+        self.addSubInterface(self.dish_searchInterface, FIF.SEARCH, '菜品查询')
+        self.addSubInterface(self.dish_editInterface, FIF.EDIT, '菜品操作')
 
 
         # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')

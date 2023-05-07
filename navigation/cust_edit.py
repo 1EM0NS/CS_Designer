@@ -37,7 +37,7 @@ class Cust_edit(QWidget):
         self.edit_username = LineEdit()
         self.lbl_password = QLabel('密码：')
         self.edit_password = LineEdit()
-        self.btn_submit = PushButton('提交')
+        self.btn_submit = PushButton('修改')
         self.comboBox = ComboBox(self)
         self.comboBox.addItems(['修改', '删除', '新增'])
         self.comboBox.currentIndexChanged.connect(self.selectionchange)
@@ -143,7 +143,16 @@ class Cust_edit(QWidget):
                 self.edit_hometown.setText('')
                 self.edit_username.setText('')
                 self.edit_password.setText('')
-                QMessageBox.information(self, '提示','客户编号不存在！')
+                InfoBar.warning(
+                    title='警告',
+                    content=f"客户编号不存在",
+                    orient=QtCore.Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.TOP,
+                    duration=1000,  # won't disappear automatically
+                    parent=self,
+
+                )
         cursor.close()
         cnx.close()
 
