@@ -128,6 +128,15 @@ class Emp_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time+"：新增员工成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"员工信息新增成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def update_employee(self):
         emp_id = self.emp_id_edit.text()
@@ -143,6 +152,15 @@ class Emp_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time + "：更新员工成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"员工信息更新成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP_RIGHT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def delete_employee(self):
         emp_id = self.emp_id_edit.text()
@@ -152,6 +170,15 @@ class Emp_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time + "：删除员工成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"员工信息删除成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP_RIGHT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def on_action_combo_changed(self, index):
         if index == 0:
