@@ -122,6 +122,15 @@ class Stock_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time+"：新增原材料成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"原材料信息新增成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def update_employee(self):
         emp_id = self.emp_id_edit.text()
@@ -136,6 +145,15 @@ class Stock_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time + "：更新原材料成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"订单信息更新成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def delete_employee(self):
         emp_id = self.emp_id_edit.text()
@@ -145,6 +163,15 @@ class Stock_edit(QWidget):
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.info_label.insertPlainText(time + "：删除原材料成功🥰\n")
+        InfoBar.success(
+            title='成功',
+            content=f"原材料信息删除成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 
     def on_action_combo_changed(self, index):
         if index == 0:

@@ -89,7 +89,6 @@ class Emp_edit(QWidget):
 
     def closeEvent(self, event):
         self.db.close()
-
     def get_employee_info(self):
         emp_id = self.emp_id_edit.text()
 
@@ -157,7 +156,7 @@ class Emp_edit(QWidget):
             content=f"员工信息更新成功",
             orient=QtCore.Qt.Horizontal,
             isClosable=True,
-            position=InfoBarPosition.TOP_RIGHT,
+            position=InfoBarPosition.BOTTOM_LEFT,
             duration=1200,  # won't disappear automatically
             parent=self,
         )
@@ -175,7 +174,7 @@ class Emp_edit(QWidget):
             content=f"员工信息删除成功",
             orient=QtCore.Qt.Horizontal,
             isClosable=True,
-            position=InfoBarPosition.TOP_RIGHT,
+            position=InfoBarPosition.BOTTOM_LEFT,
             duration=1200,  # won't disappear automatically
             parent=self,
         )

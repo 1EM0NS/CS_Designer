@@ -25,7 +25,7 @@ class Dish_search(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         # 查询文本框
         self.search_edit = LineEdit(self)
-        self.search_edit.setPlaceholderText("请输入要查询的内容")
+        self.search_edit.setPlaceholderText("请输入查询内容")
         self.comboBox = ComboBox(self)
 
         self.comboBox.addItems(['菜品编号', '菜品名称'])

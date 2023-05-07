@@ -176,12 +176,12 @@ class Window(FramelessWindow):
         self.addSubInterface(self.emp_editInterface, FIF.PENCIL_INK, '员工操作')
         self.navigationInterface.addSeparator()
         # 来个分隔符号
-        self.addSubInterface(self.dish_searchInterface, FIF.SEARCH, '菜品查询')
-        self.addSubInterface(self.dish_editInterface, FIF.EDIT, '菜品操作')
+        self.addSubInterface(self.dish_searchInterface, FIF.MORE, '菜品查询')
+        self.addSubInterface(self.dish_editInterface, FIF.SEND, '菜品操作')
         #来个分隔符号
         self.navigationInterface.addSeparator()
-        self.addSubInterface(self.order_searchInterface, FIF.VIEW, '订单查询')
-        self.addSubInterface(self.order_editInterface, FIF.PENCIL_INK, '订单操作')
+        self.addSubInterface(self.order_searchInterface, FIF.ZOOM_IN, '订单查询')
+        self.addSubInterface(self.order_editInterface, FIF.DOCUMENT, '订单操作')
         #来个分隔符号
         self.navigationInterface.addSeparator()
         self.addSubInterface(self.stock_searchInterface, FIF.BOOK_SHELF, '原材料查询')
