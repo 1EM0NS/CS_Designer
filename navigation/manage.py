@@ -15,6 +15,8 @@ from navigation.cust_search import Cust_search
 from navigation.cust_edit import Cust_edit
 from navigation.emp_search import Emp_search
 from navigation.emp_edit import Emp_edit
+from navigation.dish_search import Dish_search
+from navigation.dish_edit import Dish_edit
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -33,7 +35,7 @@ class AvatarWidget(NavigationWidget):
 
     def __init__(self, parent=None):
         super().__init__(isSelectable=False, parent=parent)
-        self.avatar = QImage('/resource/t.png').scaled(
+        self.avatar = QImage('resource/t.png').scaled(
             24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def paintEvent(self, e):
@@ -80,6 +82,8 @@ class Window(FramelessWindow):
 
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True)
+        self.navigationInterface.setStyleSheet("QWidget { background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(236, 123, 163,230),stop:0.4 rgba(179, 214, 54,230) ,stop:0.6 rgba(57, 233, 221,230),stop:1 rgba(57, 233, 221,200));border : 3px solid rgba(200, 200, 255,120);border-radius: 20px;}")
+
         self.stackWidget = QStackedWidget(self)
 
         # 这里是界面定义部分
@@ -103,6 +107,17 @@ class Window(FramelessWindow):
         self.emp_editInterface.hBoxLayout.addWidget(Emp_edit())
         self.emp_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
         self.emp_editInterface.label.deleteLater()
+        #菜品查询部分
+        self.dish_searchInterface = Widget('菜品查询', self)
+        self.dish_searchInterface.hBoxLayout.addWidget(Dish_search())
+        self.dish_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.dish_searchInterface.label.deleteLater()
+        #菜品操作部分
+        self.dish_editInterface = Widget('菜品操作', self)
+        self.dish_editInterface.hBoxLayout.addWidget(Dish_edit())
+        self.dish_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.dish_editInterface.label.deleteLater()
+
 
         # self.musicInterface = Widget('Music Interface', self)
         # self.videoInterface = Widget('Video Interface', self)
@@ -132,8 +147,13 @@ class Window(FramelessWindow):
         self.addSubInterface(self.cust_editInterface, FIF.EDIT, '客户操作')
         # 来个分隔符号
         self.navigationInterface.addSeparator()
-        self.addSubInterface(self.emp_searchInterface, FIF.MUSIC, '员工查询')
-        self.addSubInterface(self.emp_editInterface, FIF.VIDEO, '员工操作')
+        self.addSubInterface(self.emp_searchInterface, FIF.VIEW, '员工查询')
+        self.addSubInterface(self.emp_editInterface, FIF.PENCIL_INK, '员工操作')
+        self.navigationInterface.addSeparator()
+        # 来个分隔符号
+        self.addSubInterface(self.dish_searchInterface, FIF.VIEW, '菜品查询')
+        self.addSubInterface(self.dish_editInterface, FIF.PENCIL_INK, '菜品操作')
+
 
         # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 
@@ -170,8 +190,8 @@ class Window(FramelessWindow):
         self.stackWidget.setCurrentIndex(0)
 
     def initWindow(self):
-        self.resize(900, 700)
-        self.setWindowIcon(QIcon('/resource/t.png'))
+        self.resize(1200, 700)
+        self.setWindowIcon(QIcon('resource/t.png'))
         self.setWindowTitle('餐饮系统后台管理')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 

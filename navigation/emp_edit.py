@@ -1,5 +1,6 @@
 import sys
 
+from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QComboBox, QMessageBox
 import pymysql
@@ -14,7 +15,7 @@ class Emp_edit(QWidget):
 
     def init_ui(self):
         self.emp_id_label = QLabel("员工编号")
-        self.emp_id_edit = LineEdit()
+        self.emp_id_edit = SpinBox()
         self.get_info_btn = PushButton("获取员工信息")
         self.get_info_btn.clicked.connect(self.get_employee_info)
         self.info_label = TextEdit()
@@ -42,9 +43,9 @@ class Emp_edit(QWidget):
         self.password_edit = LineEdit()
         self.contact_label = QLabel("联系方式")
         self.contact_edit = LineEdit()
-        self.hometown_label = QLabel("家乡")
+        self.hometown_label = QLabel("籍贯")
         self.hometown_edit = LineEdit()
-        self.submit_btn = PushButton("提交")
+        self.submit_btn = PushButton("修改")
         self.submit_btn.clicked.connect(self.on_submit_btn_clicked)
 
         hbox1 = QHBoxLayout()
@@ -107,7 +108,15 @@ class Emp_edit(QWidget):
             self.contact_edit.setText(result[5])
             self.hometown_edit.setText(result[6])
         else:
-            QMessageBox.warning(self, "提示", "未找到该员工信息")
+            InfoBar.error(
+                title='错误',
+                content=f"没有找到员工编号为{emp_id}的员工",
+                orient=QtCore.Qt.Horizontal,
+                isClosable=True,
+                position=InfoBarPosition.BOTTOM_LEFT,
+                duration=1200,  # won't disappear automatically
+                parent=self,
+            )
 
     def add_employee(self):
         username = self.username_edit.text()
