@@ -6,11 +6,12 @@ from qfluentwidgets import InfoBarIcon, InfoBar, InfoBarPosition
 import resources_rc
 from register.register import RegisterDialog
 from navigation.manage import Window
+from cust.poi import MainView
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(461, 676)
-
+        self.m = MainView()
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -366,7 +367,6 @@ class Ui_MainWindow(object):
             duration=2000,
             parent=self
         )
-        #todo: 进入系统
         c = Window()
         self.close()
         c.show()
@@ -396,7 +396,14 @@ class Ui_MainWindow(object):
             parent=self
         )
         #todo: 进入系统
+
+
+
+        self.close()
+        self.m.show()
+
         print("客户登录成功")
+
 
     def login(self):
         username = self.lineEdit.text()

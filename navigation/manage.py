@@ -91,7 +91,7 @@ class Window(FramelessWindow):
         self.stackWidget = QStackedWidget(self)
 
         # 这里是界面定义部分
-        #客户查询部分#todo
+        #客户查询部分
         self.cust_searchInterface = Widget('客户查询', self)
         self.cust_searchInterface.hBoxLayout.addWidget(Cust_search())
         self.cust_searchInterface.hBoxLayout.removeWidget(self.cust_searchInterface.label)
@@ -167,7 +167,7 @@ class Window(FramelessWindow):
         self.hBoxLayout.addWidget(self.stackWidget)
         self.hBoxLayout.setStretchFactor(self.stackWidget, 1)
 
-    def initNavigation(self):#todo
+    def initNavigation(self):
         self.addSubInterface(self.cust_searchInterface, FIF.SEARCH, '客户查询')
         self.addSubInterface(self.cust_editInterface, FIF.EDIT, '客户操作')
         # 来个分隔符号
