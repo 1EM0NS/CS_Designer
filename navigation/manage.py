@@ -17,6 +17,7 @@ from navigation.emp_search import Emp_search
 from navigation.emp_edit import Emp_edit
 from navigation.dish_search import Dish_search
 from navigation.dish_edit import Dish_edit
+from navigation.order_search import Order_search
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -117,7 +118,12 @@ class Window(FramelessWindow):
         self.dish_editInterface.hBoxLayout.addWidget(Dish_edit())
         self.dish_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
         self.dish_editInterface.label.deleteLater()
-
+        #订单查询部分
+        self.order_searchInterface = Widget('订单查询', self)
+        self.order_searchInterface.hBoxLayout.addWidget(Order_search())
+        self.order_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.order_searchInterface.label.deleteLater()
+        #订单操作部分
 
         # self.musicInterface = Widget('Music Interface', self)
         # self.videoInterface = Widget('Video Interface', self)
@@ -153,7 +159,10 @@ class Window(FramelessWindow):
         # 来个分隔符号
         self.addSubInterface(self.dish_searchInterface, FIF.SEARCH, '菜品查询')
         self.addSubInterface(self.dish_editInterface, FIF.EDIT, '菜品操作')
-
+        #来个分隔符号
+        self.navigationInterface.addSeparator()
+        self.addSubInterface(self.order_searchInterface, FIF.VIEW, '订单查询')
+        # self.addSubInterface(self.order_editInterface, FIF.PENCIL_INK, '订单操作')
 
         # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
 

@@ -37,7 +37,7 @@ class Dish_edit(QWidget):
         self.edit_username = LineEdit()
         self.lbl_password = QLabel('负责员工编号：')
         self.edit_password = LineEdit()
-        self.btn_submit = PushButton('提交')
+        self.btn_submit = PushButton('修改')
         self.comboBox = ComboBox(self)
         self.comboBox.addItems(['修改', '删除', '新增'])
         self.comboBox.currentIndexChanged.connect(self.selectionchange)
