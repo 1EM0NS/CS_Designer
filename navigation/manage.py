@@ -18,6 +18,9 @@ from navigation.emp_edit import Emp_edit
 from navigation.dish_search import Dish_search
 from navigation.dish_edit import Dish_edit
 from navigation.order_search import Order_search
+from navigation.order_edit import Order_edit
+from navigation.stock_search import Stock_search
+from navigation.stock_edit import Stock_edit
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -124,7 +127,23 @@ class Window(FramelessWindow):
         self.order_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
         self.order_searchInterface.label.deleteLater()
         #订单操作部分
+        self.order_editInterface = Widget('订单操作', self)
+        self.order_editInterface.hBoxLayout.addWidget(Order_edit())
+        self.order_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.order_editInterface.label.deleteLater()
+        #库存查询部分
+        self.stock_searchInterface = Widget('库存查询', self)
+        self.stock_searchInterface.hBoxLayout.addWidget(Stock_search())
+        self.stock_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.stock_searchInterface.label.deleteLater()
+        #库存操作部分
+        self.stock_editInterface = Widget('库存操作', self)
+        self.stock_editInterface.hBoxLayout.addWidget(Stock_edit())
+        self.stock_editInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
+        self.stock_editInterface.label.deleteLater()
 
+        # self.stock_searchInterface.hBoxLayout.addWidget(Stock_search())
+        # self.stock_searchInterface.hBoxLayout.removeWidget(self.cust_editInterface.label)
         # self.musicInterface = Widget('Music Interface', self)
         # self.videoInterface = Widget('Video Interface', self)
         # self.folderInterface = Widget('Folder Interface', self)
@@ -162,6 +181,12 @@ class Window(FramelessWindow):
         #来个分隔符号
         self.navigationInterface.addSeparator()
         self.addSubInterface(self.order_searchInterface, FIF.VIEW, '订单查询')
+        self.addSubInterface(self.order_editInterface, FIF.PENCIL_INK, '订单操作')
+        #来个分隔符号
+        self.navigationInterface.addSeparator()
+        self.addSubInterface(self.stock_searchInterface, FIF.BOOK_SHELF, '原材料查询')
+        self.addSubInterface(self.stock_editInterface, FIF.HIGHTLIGHT, '原材料操作')
+        #来个分隔符号
         # self.addSubInterface(self.order_editInterface, FIF.PENCIL_INK, '订单操作')
 
         # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')

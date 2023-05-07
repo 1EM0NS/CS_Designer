@@ -6,7 +6,7 @@ from qfluentwidgets import TableWidget, ComboBox, PushButton, LineEdit
 from qfluentwidgets import FluentIcon as FIF
 
 
-class Emp_search(QWidget):
+class Stock_search(QWidget):
     def __init__(self):
         self.flag = 0
         super().__init__()
@@ -15,7 +15,7 @@ class Emp_search(QWidget):
                              password='1784',
                              database='餐饮管理系统')
         cursor = db.cursor()
-        cursor.execute("select * from employee")
+        cursor.execute("select * from material")
         data = cursor.fetchall()
         db.close()
         print(data)
@@ -25,10 +25,10 @@ class Emp_search(QWidget):
         self.vBoxLayout = QVBoxLayout(self)
         # 查询文本框
         self.search_edit = LineEdit(self)
-        self.search_edit.setPlaceholderText("请输入")
+        self.search_edit.setPlaceholderText("请输入查询内容")
         self.comboBox = ComboBox(self)
 
-        self.comboBox.addItems(['员工编号', '员工名称', '用户名'])
+        self.comboBox.addItems(['原材料编号', '原材料名称'])
         self.comboBox.setCurrentIndex(0)
 
         self.comboBox.move(200, 200)
@@ -42,16 +42,16 @@ class Emp_search(QWidget):
         self.tableView = TableWidget(self)
 
         self.tableView.setWordWrap(False)
-        self.tableView.setRowCount(35)
-        self.tableView.setColumnCount(7)
+        self.tableView.setRowCount(len(data))
+        self.tableView.setColumnCount(6)
         info = data
         for i, songInfo in enumerate(info):
-            for j in range(7):
+            for j in range(6):
                 self.tableView.setItem(i, j, QTableWidgetItem(str(songInfo[j])))
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(
-            ['员工编号', '用户名', '姓名', '性别', '密码', '联系方式', '籍贯'])
+            ['原材料编号', '原材料名称', '数量', '类别', '存储点', '菜品编号'])
 
         self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
@@ -68,8 +68,8 @@ class Emp_search(QWidget):
                             outline: 0;
                             font-size: 14px;
                             color: #000;
-                            
-                         
+
+
             }
             QTableView::item {
         padding-top: 20px; /* 设置上边距 */
@@ -108,11 +108,9 @@ class Emp_search(QWidget):
         # 选择下拉框
 
         text = self.comboBox.text()
-        if text == '员工编号':
+        if text == '原材料编号':
             self.flag = 0
-        elif text == '员工名称':
-            self.flag = 2
-        elif text == '用户名':
+        elif text == '原材料名称':
             self.flag = 1
         print(self.flag)
 
@@ -123,17 +121,17 @@ class Emp_search(QWidget):
                              password='1784',
                              database='餐饮管理系统')
         cursor = db.cursor()
-        cursor.execute("select * from employee")
+        cursor.execute("select * from material")
         data = cursor.fetchall()
-        self.tableView.setRowCount(len(data))
         print(data)
         info = data
-        #清空table
+        # 清空table
+        self.tableView.setRowCount(len(data))
         self.tableView.clearContents()
         for i, songInfo in enumerate(info):
-            for j in range(7):
+            for j in range(6):
                 self.tableView.setItem(i, j, QTableWidgetItem(str(songInfo[j])))
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(
-            ['员工编号', '用户名', '姓名', '性别', '密码', '联系方式', '籍贯'])
+            ['原材料编号', '原材料名称', '数量', '类别', '存储点', '菜品编号'])
