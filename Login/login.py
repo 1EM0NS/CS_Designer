@@ -345,7 +345,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", ""))
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "用户名"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "密码"))
-
         self.checkBox.setText(_translate("MainWindow", "记住我"))
         self.pushButton.setText(_translate("MainWindow", "忘记密码？"))
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
@@ -354,8 +353,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "没有账户?"))
         self.pushButton_3.setText(_translate("MainWindow", "添加一个账户"))
         self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
-        self.label_4.setText(_translate("MainWindow", "SIGN-IN PLATFORM"))
-
+        self.label_4.setText(_translate("MainWindow", "登录平台"))
     def employee_login(self, employee):
         # 执行员工登录操作
         InfoBar.success(
@@ -384,7 +382,7 @@ class Ui_MainWindow(object):
             duration=2000,
             parent=self
         )
-    def customer_login(self, customer):
+    def customer_login(self, cust):
         # 执行客户登录操作
         InfoBar.success(
             title='成功',
@@ -400,7 +398,7 @@ class Ui_MainWindow(object):
 
 
         self.close()
-        self.m = MainWindow()
+        self.m = MainWindow(cust)
         self.m.show()
 
         print("客户登录成功")

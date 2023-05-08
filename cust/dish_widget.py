@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QScrollArea, QGridLayout, \
-    QHBoxLayout, QSizePolicy
+    QHBoxLayout, QSizePolicy, QSpinBox
 from PyQt5.QtGui import QFont, QPixmap
 import pymysql
 from qfluentwidgets import PushButton,SpinBox,SmoothScrollArea
@@ -27,11 +27,11 @@ class DishWidget(QWidget):
         img_label = QLabel()
 
         #若没有图片
-        if not os.path.exists('img/{}.jpg'.format(self.dish_id)):
-            img_label.setPixmap(QPixmap('img/1.jpg').scaled(150, 100))
+        if not os.path.exists('../cust/img/{}.jpg'.format(self.dish_id)):
+            img_label.setPixmap(QPixmap('../cust/img/1.jpg').scaled(150, 100))
         #找到图片
         else:
-            img_label.setPixmap(QPixmap('img/{}.jpg'.format(self.dish_id)).scaled(130, 100))
+            img_label.setPixmap(QPixmap('../cust/img/{}.jpg'.format(self.dish_id)).scaled(130, 100))
 
         nameLabel = QLabel(self.name)
 
@@ -120,6 +120,42 @@ class MenuWidget(QWidget):
         cursor.close()
         db.close()
 
+    def order(self,cust_id):
+        dishes = []  # 存储已点菜品
+        for i in range(self.vboxlayout.count()):
+            widget = self.vboxlayout.itemAt(i).widget()
+            if isinstance(widget, DishWidget):
+                dish_id = widget.dish_id
+                quantity = widget.findChild(QSpinBox).value()
+                if quantity > 0:
+                    dishes.append((dish_id, quantity))
+        if len(dishes) > 0:
+            # 这里可以将已点菜品信息上传到服务器或者进行其他处理
+            try:
+                # 连接到数据库
+                conn = pymysql.connect(host='localhost',
+                             user='root',
+                             password='1784',
+                             database='餐饮管理系统')
+
+                # 获取一个游标对象
+                cursor = conn.cursor()
+
+                # 循环处理每个菜品编号和数量
+                for dish_id, quantity in dishes:
+                    # 插入一条订单记录到订单表中
+                    insert_query = "INSERT INTO `orderc` (`cust_id`, `dish_id`, `order_time`, `quantity`) VALUES (%s, %s, NOW(), %s)"
+                    cursor.execute(insert_query, (cust_id, dish_id, quantity))
+
+                # 提交事务并关闭游标和连接
+                conn.commit()
+                cursor.close()
+                conn.close()
+
+            except Exception as error:
+                print(f"Failed to place order: {error}")
+            print(dishes)
+        return len(dishes)
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     menuWidget = MenuWidget()

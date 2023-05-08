@@ -21,6 +21,7 @@ from navigation.order_search import Order_search
 from navigation.order_edit import Order_edit
 from navigation.stock_search import Stock_search
 from navigation.stock_edit import Stock_edit
+from navigation.bb_inter import Bb_inter
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -147,7 +148,10 @@ class Window(FramelessWindow):
         # self.musicInterface = Widget('Music Interface', self)
         # self.videoInterface = Widget('Video Interface', self)
         # self.folderInterface = Widget('Folder Interface', self)
-        self.settingInterface = Widget('Setting Interface', self)
+        self.settingInterface = Widget('报表查看', self)
+        self.settingInterface.hBoxLayout.addWidget(Bb_inter())
+        self.settingInterface.hBoxLayout.removeWidget(self.settingInterface.label)
+        self.settingInterface.label.deleteLater()
 
         # 添加自定义部件（MyWidget）
         # self.widget = MyWidget()
@@ -187,6 +191,7 @@ class Window(FramelessWindow):
         self.addSubInterface(self.stock_searchInterface, FIF.BOOK_SHELF, '原材料查询')
         self.addSubInterface(self.stock_editInterface, FIF.HIGHTLIGHT, '原材料操作')
         #来个分隔符号
+
         # self.addSubInterface(self.order_editInterface, FIF.PENCIL_INK, '订单操作')
 
         # self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
@@ -212,7 +217,7 @@ class Window(FramelessWindow):
             position=NavigationItemPosition.BOTTOM
         )
 
-        self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
+        self.addSubInterface(self.settingInterface, FIF.COPY, '报表查看', NavigationItemPosition.BOTTOM)
 
         #!IMPORTANT: don't forget to set the default route key if you enable the return button
         # self.navigationInterface.setDefaultRouteKey(self.musicInterface.objectName())
@@ -305,7 +310,6 @@ if __name__ == '__main__':
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-
     app = QApplication(sys.argv)
     w = Window()
     w.show()
