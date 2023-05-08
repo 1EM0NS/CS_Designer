@@ -39,8 +39,12 @@
 
 ## 简介
 为了完成计算机软件综合实验的离谱要求，因此有了它的存在
-## 记录
- ![img](https://raw.githubusercontent.com/1EM0NS/ESP32-Weather-Clock-smartconfig-Blinker/main/img/1.png)
+## 界面及记录
+ ![img](https://raw.githubusercontent.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png)
+ ![img](https://raw.githubusercontent.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png)
+ ![img](https://raw.githubusercontent.com/1EM0NS/CS_Designer/blob/master/exhibition/3.png)
+ ![img](https://raw.githubusercontent.com/1EM0NS/CS_Designer/blob/master/exhibition/4.png)
+ ![img](https://raw.githubusercontent.com/1EM0NS/CS_Designer/blob/master/exhibition/5.png)
 5/6
 
 - 完成登录界面
