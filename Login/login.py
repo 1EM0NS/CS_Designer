@@ -6,12 +6,12 @@ from qfluentwidgets import InfoBarIcon, InfoBar, InfoBarPosition
 import resources_rc
 from register.register import RegisterDialog
 from navigation.manage import Window
-from cust.poi import MainView
+from cust.cust_inter import MainWindow
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(461, 676)
-        self.m = MainView()
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -400,6 +400,7 @@ class Ui_MainWindow(object):
 
 
         self.close()
+        self.m = MainWindow()
         self.m.show()
 
         print("客户登录成功")

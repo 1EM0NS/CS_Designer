@@ -1,9 +1,9 @@
 import pymysql
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QBrush, QColor
-from PyQt5.QtWidgets import QHBoxLayout, QWidget, QTableWidgetItem, QLineEdit, QVBoxLayout, QPushButton, QHeaderView
-from qfluentwidgets import TableWidget, ComboBox, PushButton, LineEdit
+from PyQt5.QtWidgets import QHBoxLayout, QWidget, QTableWidgetItem, QVBoxLayout, QHeaderView
 from qfluentwidgets import FluentIcon as FIF
+from qfluentwidgets import TableWidget, ComboBox, PushButton, LineEdit
 
 
 class Dish_search(QWidget):
@@ -51,7 +51,7 @@ class Dish_search(QWidget):
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(
-            ['菜品编号', '菜品名称', '价格', '数量', '辣度', '是否推荐','创建日期','成本','负责员工编号'])
+            ['菜品编号', '菜品名称', '价格', '数量', '辣度', '是否推荐', '创建日期', '成本', '负责员工编号'])
 
         self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
@@ -111,7 +111,6 @@ class Dish_search(QWidget):
         elif text == '菜品名称':
             self.flag = 1
 
-
     def refresh(self):
         # 刷新
 
@@ -133,4 +132,4 @@ class Dish_search(QWidget):
 
         self.tableView.verticalHeader().hide()
         self.tableView.setHorizontalHeaderLabels(
-            ['菜品编号', '菜品名称', '价格', '数量', '辣度', '是否推荐','创建日期','成本','负责员工编号'])
+            ['菜品编号', '菜品名称', '价格', '数量', '辣度', '是否推荐', '创建日期', '成本', '负责员工编号'])
