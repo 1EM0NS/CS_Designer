@@ -87,7 +87,7 @@ class Window(FramelessWindow):
 
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True,showReturnButton=True)
-        self.navigationInterface.setStyleSheet("QWidget { background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(236, 123, 163,230),stop:0.4 rgba(179, 214, 54,230) ,stop:0.6 rgba(57, 233, 221,230),stop:1 rgba(57, 233, 221,200));border : 3px solid rgba(200, 200, 255,120);border-radius: 20px;}")
+        self.navigationInterface.setStyleSheet("QWidget { background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 rgba(222, 248, 146,230),stop:0.5 rgba(27, 220, 161,230) ,stop:1 rgba(92, 78, 235,235));border-color: rgba(27, 220, 161,0.3);border-width: 4px;border-style: solid;border-top-right-radius: 15px;}")
 
         self.stackWidget = QStackedWidget(self)
 
@@ -232,6 +232,7 @@ class Window(FramelessWindow):
         self.resize(1200, 700)
         self.setWindowIcon(QIcon('C:/Users/User\Desktop\计算机软件综合实验\计算机软件综合实验/navigation/resource/t.png'))
         self.setWindowTitle('餐饮系统后台管理')
+        #圆角
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
         desktop = QApplication.desktop().availableGeometry()

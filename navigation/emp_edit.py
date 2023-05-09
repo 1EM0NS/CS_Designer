@@ -21,8 +21,8 @@ class Emp_edit(QWidget):
         self.info_label = TextEdit()
         self.info_label.setReadOnly(True)
         self.info_label.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
-            'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
+            'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px}'
+            'QTextEdit:hover{background-color:rgba(255,255,255,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.action_combo = ComboBox()
         self.action_combo.addItem("新增员工")
         self.action_combo.addItem("修改员工")
@@ -30,20 +30,20 @@ class Emp_edit(QWidget):
         self.action_combo.setCurrentIndex(1)
         self.action_combo.currentIndexChanged.connect(self.on_action_combo_changed)
 
-        self.username_label = QLabel("用户名")
+        self.username_label = QLabel("用 户 名:")
         self.username_edit = LineEdit()
-        self.name_label = QLabel("姓名")
+        self.name_label = QLabel("姓    名:")
         #透明
 
 
         self.name_edit = LineEdit()
-        self.gender_label = QLabel("性别")
+        self.gender_label = QLabel("性    别:")
         self.gender_edit = LineEdit()
-        self.password_label = QLabel("密码")
+        self.password_label = QLabel("密    码:")
         self.password_edit = LineEdit()
-        self.contact_label = QLabel("联系方式")
+        self.contact_label = QLabel("联系方式:")
         self.contact_edit = LineEdit()
-        self.hometown_label = QLabel("籍贯")
+        self.hometown_label = QLabel("籍    贯:")
         self.hometown_edit = LineEdit()
         self.submit_btn = PushButton("修改")
         self.submit_btn.clicked.connect(self.on_submit_btn_clicked)
@@ -86,6 +86,16 @@ class Emp_edit(QWidget):
                                  password='1784',
                                  database='餐饮管理系统')
         self.cursor = self.db.cursor()
+        self.setedit()
+    def setedit(self):
+        self.username_edit.setFixedHeight(66)
+        self.name_edit.setFixedHeight(66)
+        self.gender_edit.setFixedHeight(66)
+        self.password_edit.setFixedHeight(66)
+        self.contact_edit.setFixedHeight(66)
+        self.hometown_edit.setFixedHeight(66)
+
+
 
     def closeEvent(self, event):
         self.db.close()

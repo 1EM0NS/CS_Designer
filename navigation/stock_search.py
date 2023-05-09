@@ -59,11 +59,11 @@ class Stock_search(QWidget):
         self.tableView.setAlternatingRowColors(True)
 
         self.tableView.setStyleSheet('''
-            QTableView { border: 1px solid #D9D9D9;
-                         background-color: rgba(235, 238, 205,200);
+          QTableView { border: 0px solid #D9D9D9;
+                         background-color: rgba(235, 238, 205,80);
                          selection-background-color: #999;
                             selection-color: #fff;
-                            alternate-background-color: rgba(255, 255, 255,230);
+                            alternate-background-color: rgba(255, 255, 255,120);
                             gridline-color: #ccc;
                             outline: 0;
                             font-size: 14px;

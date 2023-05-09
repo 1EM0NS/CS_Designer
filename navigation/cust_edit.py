@@ -5,7 +5,8 @@ from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QMessageBox
 import pymysql
 from qfluentwidgets import InfoBar, InfoBarPosition, LineEdit, PushButton, TextEdit, SpinBox, ComboBox
-
+def seteditstyle(edit):
+    edit.setStyleSheet('QLabel{font-size:15px;font-family:"Microsoft YaHei", sans-serif;}')
 
 class Cust_edit(QWidget):
     def __init__(self):
@@ -15,27 +16,27 @@ class Cust_edit(QWidget):
         self.lbl_id = TextEdit()
         self.lbl_id.setText('')
         self.lbl_id.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
-            'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
+            'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px}'
+            'QTextEdit:hover{background-color:rgba(255,255,255,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.lbl_id.setReadOnly(True)
 
         self.edit_id = SpinBox()
         self.btn_search = PushButton('客户信息获取')
-        self.lbl_name = QLabel('姓名：')
+        self.lbl_name = QLabel('姓    名：')
         self.edit_name = LineEdit()
         self.lbl_contact = QLabel('联系方式：')
         self.edit_contact = LineEdit()
-        self.lbl_gender = QLabel('性别：')
+        self.lbl_gender = QLabel('性    别：')
         self.edit_gender = LineEdit()
         self.lbl_id_card = QLabel('身份证号：')
         self.edit_id_card = LineEdit()
-        self.lbl_ethnicity = QLabel('民族：')
+        self.lbl_ethnicity = QLabel('民    族：')
         self.edit_ethnicity = LineEdit()
-        self.lbl_hometown = QLabel('籍贯：')
+        self.lbl_hometown = QLabel('籍    贯：')
         self.edit_hometown = LineEdit()
-        self.lbl_username = QLabel('用户名：')
+        self.lbl_username = QLabel('用 户 名：')
         self.edit_username = LineEdit()
-        self.lbl_password = QLabel('密码：')
+        self.lbl_password = QLabel('密    码：')
         self.edit_password = LineEdit()
         self.btn_submit = PushButton('修改')
         self.comboBox = ComboBox(self)

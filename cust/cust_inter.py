@@ -51,7 +51,7 @@ class MainWindow(QWidget):
 
         # 创建“点餐”界面的部件
         self.scroll_area = MenuWidget()
-
+        self.scroll_area.setStyleSheet("background-color:transparent;border-radius: 5px;")
         order_layout = QVBoxLayout()
         order_layout.addWidget(self.scroll_area)
         #圆角

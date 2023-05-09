@@ -2,10 +2,13 @@ import sys
 
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QComboBox, QMessageBox
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QComboBox, \
+    QMessageBox, QSizePolicy
 import pymysql
 from qfluentwidgets import InfoBar, InfoBarPosition, LineEdit, PushButton, TextEdit, SpinBox, ComboBox
 import datetime
+
+
 class Stock_edit(QWidget):
 
     def __init__(self):
@@ -21,8 +24,8 @@ class Stock_edit(QWidget):
         self.info_label = TextEdit()
         self.info_label.setReadOnly(True)
         self.info_label.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,100,0.1);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;}'
-            'QTextEdit:hover{background-color:rgba(255,100,100,0.1);border-radius:5px;padding:5px;font-size:100px;}')
+            'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px}'
+            'QTextEdit:hover{background-color:rgba(255,255,255,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.action_combo = ComboBox()
         self.action_combo.addItem("新增原材料")
         self.action_combo.addItem("修改原材料")
@@ -30,18 +33,17 @@ class Stock_edit(QWidget):
         self.action_combo.setCurrentIndex(1)
         self.action_combo.currentIndexChanged.connect(self.on_action_combo_changed)
 
-        self.username_label = QLabel("名称")
+        self.username_label = QLabel("名    称:")
         self.username_edit = LineEdit()
-        self.name_label = QLabel("数量")
-        #透明
 
-
+        self.name_label = QLabel("数    量:")
+        # 透明
         self.name_edit = LineEdit()
-        self.gender_label = QLabel("类别")
+        self.gender_label = QLabel("类    别:")
         self.gender_edit = LineEdit()
-        self.password_label = QLabel("存储点")
+        self.password_label = QLabel("存 储 点:")
         self.password_edit = LineEdit()
-        self.contact_label = QLabel("菜品编号")
+        self.contact_label = QLabel("菜品编号:")
         self.contact_edit = LineEdit()
         self.submit_btn = PushButton("修改")
         self.submit_btn.clicked.connect(self.on_submit_btn_clicked)
@@ -76,12 +78,19 @@ class Stock_edit(QWidget):
 
         self.setLayout(hbox)
 
-
         self.db = pymysql.connect(host='localhost',
-                                 user='root',
-                                 password='1784',
-                                 database='餐饮管理系统')
+                                  user='root',
+                                  password='1784',
+                                  database='餐饮管理系统')
         self.cursor = self.db.cursor()
+        self.setedit()
+
+    def setedit(self):
+        self.username_edit.setFixedHeight(66)
+        self.gender_edit.setFixedHeight(66)
+        self.password_edit.setFixedHeight(66)
+        self.contact_edit.setFixedHeight(66)
+        self.name_edit.setFixedHeight(66)
 
     def closeEvent(self, event):
         self.db.close()
@@ -121,7 +130,7 @@ class Stock_edit(QWidget):
         self.cursor.execute(sql, (username, name, gender, password, contact))
         self.db.commit()
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        self.info_label.insertPlainText(time+"：新增原材料成功🥰\n")
+        self.info_label.insertPlainText(time + "：新增原材料成功🥰\n")
         InfoBar.success(
             title='成功',
             content=f"原材料信息新增成功",
@@ -217,6 +226,7 @@ class Stock_edit(QWidget):
             self.update_employee()
         elif self.action_combo.currentIndex() == 2:
             self.delete_employee()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
