@@ -1,6 +1,7 @@
 import sys
 import pymysql
 import matplotlib.pyplot as plt
+from PyQt5 import QtCore
 from PyQt5.QtSql import QSqlDatabase, QSqlQueryModel
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView, QVBoxLayout, QWidget
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -106,6 +107,15 @@ class Bb_inter(QMainWindow):
         self.fig.set_facecolor('none')
         self.fig.canvas.draw_idle()
         self.fig.canvas.flush_events()
+        InfoBar.success(
+            title='成功',
+            content=f"刷新成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.TOP,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Bb_inter()
