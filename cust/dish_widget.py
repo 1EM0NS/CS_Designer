@@ -88,7 +88,7 @@ class MenuWidget(QWidget):
 
     def initUI(self):
         self.setWindowTitle('菜单')
-        self.setStyleSheet('background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(236, 123, 163,230),stop:0.4 rgba(179, 214, 54,230) ,stop:0.6 rgba(57, 233, 221,230),stop:1 rgba(57, 233, 221,200));')
+        self.setStyleSheet('background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(236, 123, 163,230),stop:0.4 rgba(179, 214, 54,230) ,stop:0.6 rgba(57, 233, 221,230),stop:1 rgba(57, 233, 221,200));border-radius: 20px;')
 
         self.vboxlayout = QVBoxLayout()
         self.scrollWidget = QWidget()

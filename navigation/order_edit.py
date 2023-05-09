@@ -181,6 +181,7 @@ class Order_edit(QWidget):
             self.username_edit.setEnabled(True)
             self.name_edit.setEnabled(True)
             self.gender_edit.setEnabled(True)
+            self.password_edit.setEnabled(True)
             self.submit_btn.setText("更新订单")
             self.submit_btn.clicked.disconnect()
             self.submit_btn.clicked.connect(self.update_employee)

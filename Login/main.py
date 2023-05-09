@@ -64,6 +64,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         main_opacity.start()
         self.anim.start()
 
+
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
             super(MyMainForm, self).mousePressEvent(event)

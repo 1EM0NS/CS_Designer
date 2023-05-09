@@ -21,8 +21,8 @@ class Ui_MainWindow(object):
         self.frame_6 = QtWidgets.QFrame(self.centralwidget)
 
         self.frame_6.setStyleSheet \
-            ("background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 rgba(255, 255, 255,230), stop:1 rgba(50, 50, 200,245));\n"
-             "border-radius:20px 20px 20px 20px;\n""blur: 10px;\n")
+            ("background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,stop:0 rgba(172, 16, 105,255),stop:0.5 rgba(35, 90, 192,240), stop:1 rgba(0, 211, 196,190));\n"
+             "border-radius:25px;\n""blur: 50px;\n")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -83,8 +83,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setSpacing(4)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.widget = QtWidgets.QWidget(self.frame_3)
-        self.widget.setMinimumSize(QtCore.QSize(0, 64))
-        self.widget.setStyleSheet("image: url(:/svg/img/svg/闪电-实.png);")
+        self.widget.setMinimumSize(QtCore.QSize(50, 100))
+        self.widget.setStyleSheet("image: url(../navigation/resource/t.png);\nborder-radius: 60px;\n")
         self.widget.setObjectName("widget")
         self.verticalLayout_3.addWidget(self.widget)
         self.frame_10 = QtWidgets.QFrame(self.frame_3)

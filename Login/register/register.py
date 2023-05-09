@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt, QRect, QPropertyAnimation, QEasingCurve, QAbstractA
 from PyQt5.QtGui import QPalette, QLinearGradient, QColor, QCursor
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QDialog, \
     QMainWindow, QFrame
-from qfluentwidgets import InfoBar, InfoBarPosition
+from qfluentwidgets import InfoBar, InfoBarPosition,PushButton,LineEdit
 import condition
 import pymysql
 class RegisterDialog(QDialog):
@@ -42,16 +42,16 @@ QFrame {
 
         layout = QVBoxLayout(self.frame)
         self.username_label = QLabel('在下方输入你要注册的用户名：')
-        self.username_edit = QLineEdit()
+        self.username_edit = LineEdit()
         self.password_label = QLabel('在下方输入你要注册的密码：')
-        self.password_edit = QLineEdit()
-        self.password_edit.setEchoMode(QLineEdit.Password)
+        self.password_edit = LineEdit()
+        self.password_edit.setEchoMode(LineEdit.Password)
         self.password_confirm_label = QLabel('确认你的密码：')
-        self.password_confirm_edit = QLineEdit()
-        self.password_confirm_edit.setEchoMode(QLineEdit.Password)
-        self.submit_button = QPushButton('注册')
+        self.password_confirm_edit = LineEdit()
+        self.password_confirm_edit.setEchoMode(LineEdit.Password)
+        self.submit_button = PushButton('注册')
         self.submit_button.setCursor(QCursor(Qt.PointingHandCursor))
-        self.cancel_button = QPushButton('退出')
+        self.cancel_button = PushButton('退出')
         self.cancel_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.submit_button.clicked.connect(self.register)
         self.cancel_button.clicked.connect(self.cancel)
