@@ -43,16 +43,17 @@
 3. 与MySQL数据库进行实时交互
 4. 图片在下面⬇️
 ## 界面及记录
- ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png)
+<img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png" width="700" height="400"><img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png" width="700" height="400">
+
+<!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png) -->
+<!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png) -->
  --- 
- ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png)
+ <img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/3.png" width="700" height="400"> <img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/4.png" width="300" height="400"><img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/5.png" width="300" height="400">
+
+<!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/3.png) -->
  --- 
- ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/3.png)
- --- 
- ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/4.png)
- --- 
- ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/5.png)
- --- 
+<!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/4.png) -->
+<!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/5.png) -->
 5/6
 
 - 完成登录界面
