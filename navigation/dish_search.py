@@ -61,7 +61,7 @@ class Dish_search(QWidget):
         self.tableView.setStyleSheet('''
             QTableView { border: 0px solid #D9D9D9;
                          background-color: rgba(235, 238, 205,80);
-                         selection-background-color: #999;
+                         selection-background-color: rgba(0, 200, 255,100);
                             selection-color: #fff;
                             alternate-background-color: rgba(255, 255, 255,120);
                             gridline-color: #ccc;
@@ -100,7 +100,7 @@ class Dish_search(QWidget):
                 if self.tableView.item(i, self.flag).text() == text:
                     self.tableView.scrollToItem(self.tableView.item(i, self.flag))
                     for j in range(self.tableView.columnCount()):
-                        self.tableView.item(i, j).setBackground(QBrush(QColor(203, 220, 22)))
+                        self.tableView.item(i, j).setBackground(QBrush(QColor(0, 200, 255,100)))
 
     def select(self):
         # 选择下拉框

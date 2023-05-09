@@ -16,7 +16,7 @@ class Cust_edit(QWidget):
         self.lbl_id = TextEdit()
         self.lbl_id.setText('')
         self.lbl_id.setStyleSheet(
-            'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px}'
+            'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px;}'
             'QTextEdit:hover{background-color:rgba(255,255,255,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.lbl_id.setReadOnly(True)
 

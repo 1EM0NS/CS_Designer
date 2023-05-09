@@ -87,10 +87,9 @@ class Window(FramelessWindow):
 
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True,showReturnButton=True)
-        self.navigationInterface.setStyleSheet("QWidget { backgroundcolor: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 rgba(222, 248, 146,230),stop:0.5 rgba(27, 220, 161,230) ,stop:1 rgba(92, 78, 235,235));border-color: rgba(27, 220, 161,0.3);border-width: 4px;border-style: solid;border-top-right-radius: 15px;}")
-
+        #设置背景图片
+        self.navigationInterface.setStyleSheet("background-image:url(C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png)")
         self.stackWidget = QStackedWidget(self)
-
         # 这里是界面定义部分
         #客户查询部分
         self.cust_searchInterface = Widget('客户查询', self)

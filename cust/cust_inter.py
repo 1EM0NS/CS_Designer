@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5 import QtCore
-from PyQt5.QtGui import QPixmap, QPalette
+from PyQt5.QtGui import QPixmap, QPalette, QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit, QLabel, \
     QSizePolicy, QHeaderView, QMessageBox
 from qfluentwidgets import PushButton, LineEdit, TextEdit, ComboBox, InfoBar, InfoBarPosition, MessageBox
@@ -19,7 +19,8 @@ class MainWindow(QWidget):
         main_layout = QVBoxLayout()
         tab_layout = QHBoxLayout()
 
-
+        #设置icon
+        self.setWindowIcon(QIcon('C:/Users/User\Desktop\计算机软件综合实验\计算机软件综合实验/navigation/resource/t.png'))
         # 创建选项卡
         tab_widget = QTabWidget()
         #设置选项卡圆角
