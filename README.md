@@ -1,6 +1,6 @@
-# 餐饮管理系统
+# 餐饮管理系统🍰
 
-使用MySQL+PyQT5开发，正在开发中。。。。
+使用MySQL+PyQT5开发，基本功能已经完成，正在完善中。。。。
 
 接下来需要开发功能如下：
 
@@ -38,9 +38,21 @@
 | ~~生成订单报表~~     | 生成统计订单数量等信息的报表                                 |                                                  |
 
 ## 简介
-为了完成计算机软件综合实验的离谱要求，因此有了它的存在
-## 记录
- ![img](https://raw.githubusercontent.com/1EM0NS/ESP32-Weather-Clock-smartconfig-Blinker/main/img/1.png)
+1. 该系统有三个主界面，分别为登录窗口、客户窗口以及员工后台管理窗口，每个窗口都有大于两个的子窗口，目前实现不包括res大概3k的代码量。
+2. 本软件具有一定鲁棒性（我能想到的意外情况都做了些保护措施防止崩溃）
+3. 与MySQL数据库进行实时交互
+4. 图片在下面⬇️
+## 界面及记录
+ ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png)
+ --- 
+ ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png)
+ --- 
+ ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/3.png)
+ --- 
+ ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/4.png)
+ --- 
+ ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/5.png)
+ --- 
 5/6
 
 - 完成登录界面
