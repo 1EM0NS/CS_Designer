@@ -42,7 +42,7 @@
 2. 本软件具有一定鲁棒性（我能想到的意外情况都做了些保护措施防止崩溃）
 3. 与MySQL数据库进行实时交互
 4. 图片在下面⬇️
-## 界面及记录
+## 界面及记录（旧）
 <img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png" width="700" height="400"><img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/2.png" width="700" height="400">
 
 <!--  ![img](https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/1.png) -->
