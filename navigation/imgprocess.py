@@ -1,39 +1,30 @@
-# !/usr/bin/env python3.6
-# -*- coding: utf-8 -*-
-#__author__: Ed Frey
-#date:  2018/8/8
 from PIL import Image
 
-def trans_PNG(initial_pic, new_pic):
-    '''
-    to get a transparent picture
-    :param initial_pic: initial picture's path
-    :param new_pic: the transparent picture's path
-    :return:
-    '''
-    img = Image.open(initial_pic)
-        #将图片转换为四通道，而第四个通道是我们要修改的透明度，
-        #值可以设置成0-255之间的值，透明度会不太一样，看脑洞有多大咯。
-    img = img.convert("RGBA")
-    x, y = img.size
-    for i in range(x):
-        for j in range(y):
-            #取四个通道的值，然后用切片取前三个不变，最后一个改为240
-            color = img.getpixel((i, j))
-            color = color[:-1] + (240,)
-            img.putpixel((i, j), color)
+def add_padding():
+    # 打开图片
+    image = Image.open("C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png")
 
-    #将白色及近似白色的地方改成半透明
-    datas = img.getdata()
-    new_data = list()
-    for item in datas:
-        if item[0] > 220 and item[1] > 220 and item[2] > 220:
-            new_data.append((255, 255, 255, 210))
-        else:
-            new_data.append(item)
-    img.putdata(new_data)
-    img.save(new_pic, "PNG")
+    # 获取原始图片的宽度和高度
+    width, height = image.size
 
-if __name__ == '__main__':
+    # 计算填充后的图片宽度
+    new_width = width + 10 * width
 
-    trans_PNG("C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png", "C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/test02.png")
+    # 创建一个新的图片对象，宽度为填充后的宽度，高度不变
+    new_image = Image.new("RGB", (new_width, height), "white")
+
+    # 计算图片在新图片中的左边距
+    left_margin = 5 * width
+
+    # 将原始图片粘贴到新图片中
+    new_image.paste(image, (left_margin, 0))
+
+    # 保存填充后的图片
+    new_image.save("C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/test02.png")
+
+    print("图片填充完成！")
+
+# 输入图片的文件路径
+# 调用函数进行图片填充
+add_padding()
+
