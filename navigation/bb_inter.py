@@ -29,6 +29,7 @@ class Bb_inter(QMainWindow):
         layout.addWidget(canvas)
 
         widget = QWidget()
+        widget.setStyleSheet('border-radius: 30px; background-color: rgba(255, 255, 255, 1);')
         widget.setLayout(layout)
         self.setCentralWidget(widget)
     def autolabel(self,rects,c):

@@ -2,6 +2,7 @@
 import sys
 
 import pymysql
+from PIL import Image
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QPalette
@@ -77,8 +78,11 @@ class Window(FramelessWindow):
 
     def __init__(self):
         super().__init__()
-        self.setTitleBar(StandardTitleBar(self))
-
+        st =  StandardTitleBar(self)
+        #圆角
+        self.setTitleBar(st)
+        #窗口上半部分背景透明
+        self.setAttribute(Qt.WA_TranslucentBackground)
         # use dark theme mode
         # setTheme(Theme.DARK)
 
@@ -88,7 +92,8 @@ class Window(FramelessWindow):
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True,showReturnButton=True)
         #设置背景图片
-        self.navigationInterface.setStyleSheet("background-image:url(C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png)")
+        self.navigationInterface.setStyleSheet("background-image:url(C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png);border-bottom-left-radius:15px;")
+
         self.stackWidget = QStackedWidget(self)
         # 这里是界面定义部分
         #客户查询部分
@@ -302,6 +307,7 @@ class Window(FramelessWindow):
             parent=self,
         )
         # w.exec()
+
 
 
 if __name__ == '__main__':
