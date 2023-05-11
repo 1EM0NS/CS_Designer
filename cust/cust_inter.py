@@ -24,11 +24,11 @@ class MainWindow(QWidget):
         # 创建选项卡
         tab_widget = QTabWidget()
         #设置选项卡圆角
-        tab_widget.setStyleSheet("QTabBar::tab{width:100px;height:50px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;padding:5px;background-color:rgba(255,255,255,0.1);border-radius: 5px;}"
-                                 "QTabBar::tab:hover{background-color:rgba(255,255,255,0.4);padding:5px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;border-radius: 5px;}"
-                                    "QTabBar::tab:selected{background-color:rgba(255,255,255,0.6);padding:5px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;blur:10px;border-radius: 5px;}"
+        tab_widget.setStyleSheet("QTabBar::tab{width:100px;height:50px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;padding:5px;background-color:rgba(255,255,255,0.3);border-radius: 0px;}"
+                                 "QTabBar::tab:hover{background-color:rgba(255,255,255,0.4);padding:5px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;border-radius: 0px;}"
+                                    "QTabBar::tab:selected{background-color:rgba(255,255,255,0.6);padding:5px;font-size:20px;font-family:'Microsoft YaHei', sans-serif;blur:10px;border-radius: 0px;}"
                                     "QTabWidget::pane{border:0px solid white;background-color:transparent;}"
-                                    "QTabWidget::tab-bar{alignment:center;}"
+                                    "QTabWidget::tab-bar{alignment:center;radius:0px;}"
                                     "QTabWidget::tab-bar{background-color:transparent;}"
                                     "QTabWidget::tab-bar{border:0px solid white;}"
                                     "QTabWidget::tab-bar{margin-left:100px;margin-right:100px;}"
@@ -68,6 +68,8 @@ class MainWindow(QWidget):
 
         # 将选项卡部件添加到主布局中
         tab_layout.addWidget(tab_widget)
+        # 圆角
+        tab_layout.setContentsMargins(10, 10, 10, 10)
         main_layout.addLayout(tab_layout)
 
         # 设置主窗口布局
@@ -75,7 +77,7 @@ class MainWindow(QWidget):
         self.setStyleSheet \
             ("background-color: qlineargradient(x1:0, y1:1, x2:1, y2:0,stop:0 rgba(172, 16, 105,240),stop:0.5 rgba(35, 90, 192,240), stop:1 rgba(0, 211, 196,240));\n"
              "blur: 10px;\n")
-        self.setGeometry(600, 200, 650, 800)
+        self.setGeometry(600, 200, 600, 800)
         self.setWindowTitle('点点点点点餐吧')
         self.show()
 

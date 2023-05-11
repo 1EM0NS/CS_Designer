@@ -23,6 +23,7 @@ from navigation.order_edit import Order_edit
 from navigation.stock_search import Stock_search
 from navigation.stock_edit import Stock_edit
 from navigation.bb_inter import Bb_inter
+from Login.acrylic_dll.WindowsEffect import WindowEffect
 class Widget(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -75,13 +76,30 @@ class AvatarWidget(NavigationWidget):
 
 
 class Window(FramelessWindow):
+    def changetheme(self):
+        if self.flag == 0:
 
+
+
+            # 必须用样式表使背景透明，别用 setAttribute(Qt.WA_TranslucentBackground)，不然界面会卡顿
+
+            self.setStyleSheet("background:transparent")
+            self.windowEffect.setAcrylicEffect(int(self.winId()), gradientColor='F2F2F2A0')
+            # self.navigationInterface.setStyleSheet(
+            #     "border-bottom-left-radius:0px;")
+
+        else:
+            self.windowEffect.setAeroEffect(int(self.winId()))
+            self.flag = 0
     def __init__(self):
         super().__init__()
+        self.flag=0
+        self.windowEffect = WindowEffect()
         st =  StandardTitleBar(self)
         #圆角
         self.setTitleBar(st)
         #窗口上半部分背景透明
+
         self.setAttribute(Qt.WA_TranslucentBackground)
         # use dark theme mode
         # setTheme(Theme.DARK)
@@ -269,6 +287,7 @@ class Window(FramelessWindow):
         self.navigationInterface.setCurrentItem(widget.objectName())
 
     def showMessageBox(self):
+        self.changetheme()
         # w = MessageBox('路漫漫其修远兮，吾将上下而求索',self)
         InfoBar.info(
             title='',
