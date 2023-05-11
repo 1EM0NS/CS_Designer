@@ -59,7 +59,7 @@ class AvatarWidget(NavigationWidget):
         if self.isEnter:
             c = 255 if isDarkTheme() else 0
             painter.setBrush(QColor(c, c, c, 10))
-            painter.drawRoundedRect(self.rect(), 5, 5)
+            painter.drawRoundedRect(self.rect(), 0, 5)
 
         # draw avatar
         painter.setBrush(QBrush(self.avatar))
@@ -83,10 +83,10 @@ class Window(FramelessWindow):
 
             # 必须用样式表使背景透明，别用 setAttribute(Qt.WA_TranslucentBackground)，不然界面会卡顿
 
-            self.setStyleSheet("background:transparent")
+            self.setStyleSheet("background:transparent;")
+            # self.navigationInterface.setStyleSheet("background:transparent;")
             self.windowEffect.setAcrylicEffect(int(self.winId()), gradientColor='F2F2F2A0')
-            # self.navigationInterface.setStyleSheet(
-            #     "border-bottom-left-radius:0px;")
+
 
         else:
             self.windowEffect.setAeroEffect(int(self.winId()))
@@ -289,15 +289,6 @@ class Window(FramelessWindow):
     def showMessageBox(self):
         self.changetheme()
         # w = MessageBox('路漫漫其修远兮，吾将上下而求索',self)
-        InfoBar.info(
-            title='',
-            content=f"悲剧并非终结，而是希望的起始",
-            orient=QtCore.Qt.Horizontal,
-            isClosable=True,
-            position=InfoBarPosition.BOTTOM_LEFT,
-            duration=1200,  # won't disappear automatically
-            parent=self,
-        )
         InfoBar.info(
             title='',
             content=f"悲剧并非终结，而是希望的起始",
