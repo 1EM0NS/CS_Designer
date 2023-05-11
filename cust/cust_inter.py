@@ -3,7 +3,7 @@ import sys
 from PyQt5 import QtCore
 from PyQt5.QtGui import QPixmap, QPalette, QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout, QPushButton, QTextEdit, QLabel, \
-    QSizePolicy, QHeaderView, QMessageBox
+    QSizePolicy, QHeaderView, QMessageBox, QBoxLayout
 from qfluentwidgets import PushButton, LineEdit, TextEdit, ComboBox, InfoBar, InfoBarPosition, MessageBox
 
 from cust.dish_widget import MenuWidget
@@ -98,15 +98,26 @@ class MainWindow(QWidget):
             #todo 付款二维码的实现
             # 创建一个QMessageBox
             msg_box = QMessageBox()
-
+            #去除按钮
+            msg_box.setStandardButtons(QMessageBox.NoButton)
             # 设置提示文本和图标
-            msg_box.setText("请付款")
-            msg_box.setStandardButtons(QMessageBox.Ok)
+
 
             # 添加QLabel作为自定义控件
             label = QLabel()
             label.setPixmap(QPixmap("../cust/img/qrcode.jpg").scaledToWidth(300))
-            msg_box.layout().addWidget(label)
+            widget = QWidget()
+            #垂直布局
+            vlayout = QVBoxLayout()
+            vlayout.addWidget(label)
+            paybuttom = PushButton("我已付款")
+            vlayout.addWidget(paybuttom)
+            #设置按钮的点击退出窗口
+            paybuttom.clicked.connect(msg_box.hide)
+            widget.setLayout(vlayout)
+            msg_box.layout().addWidget(widget)
+            #设置标题
+            msg_box.setWindowTitle("付款")
             # 显示QMessageBox
             msg_box.exec_()
         else:

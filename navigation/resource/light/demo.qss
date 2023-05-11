@@ -6,7 +6,7 @@ Widget {
     border: 0px solid rgb(240, 240, 240);
     border-right: none;
     border-bottom: none;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 20px;
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 rgba(222, 248, 146,230),stop:0.5 rgba(27, 220, 161,230) ,stop:1 rgba(92, 78, 235,235));
 }
 

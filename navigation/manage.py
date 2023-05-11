@@ -92,7 +92,7 @@ class Window(FramelessWindow):
         self.hBoxLayout = QHBoxLayout(self)
         self.navigationInterface = NavigationInterface(self, showMenuButton=True,showReturnButton=True)
         #设置背景图片
-        self.navigationInterface.setStyleSheet("background-image:url(C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png);border-bottom-left-radius:15px;")
+        self.navigationInterface.setStyleSheet("background-image:url(C:/Users/User/Desktop/计算机软件综合实验/计算机软件综合实验/navigation/resource/bg.png);border-bottom-left-radius:20px;")
 
         self.stackWidget = QStackedWidget(self)
         # 这里是界面定义部分

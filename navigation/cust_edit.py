@@ -21,6 +21,7 @@ class Cust_edit(QWidget):
         self.lbl_id.setReadOnly(True)
 
         self.edit_id = SpinBox()
+        self.edit_id.setRange(0, 999999999)
         self.btn_search = PushButton('客户信息获取')
         self.lbl_name = QLabel('姓    名：')
         self.edit_name = LineEdit()

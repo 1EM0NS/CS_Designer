@@ -20,6 +20,7 @@ class Dish_edit(QWidget):
         self.lbl_id.setReadOnly(True)
         # ['菜品编号', '菜品名称', '价格', '数量', '辣度', '是否推荐', '创建日期', '成本', '负责员工编号']
         self.edit_id = SpinBox()
+        self.edit_id.setRange(0, 999999999)
         self.btn_search = PushButton('菜品信息信息获取')
         self.lbl_name = QLabel('菜品名称：')
         self.edit_name = LineEdit()

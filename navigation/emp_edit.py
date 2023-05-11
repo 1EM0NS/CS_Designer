@@ -16,6 +16,7 @@ class Emp_edit(QWidget):
     def init_ui(self):
         self.emp_id_label = QLabel("员工编号")
         self.emp_id_edit = SpinBox()
+        self.emp_id_edit.setRange(0, 999999999)
         self.get_info_btn = PushButton("获取员工信息")
         self.get_info_btn.clicked.connect(self.get_employee_info)
         self.info_label = TextEdit()
