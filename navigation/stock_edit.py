@@ -157,7 +157,7 @@ class Stock_edit(QWidget):
         self.info_label.insertPlainText(time + "：更新原材料成功🥰\n")
         InfoBar.success(
             title='成功',
-            content=f"订单信息更新成功",
+            content=f"原材料信息更新成功",
             orient=QtCore.Qt.Horizontal,
             isClosable=True,
             position=InfoBarPosition.BOTTOM_LEFT,
