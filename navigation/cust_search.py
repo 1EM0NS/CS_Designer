@@ -1,10 +1,32 @@
 import pymysql
+from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QBrush, QColor
 from PyQt5.QtWidgets import QHBoxLayout, QWidget, QTableWidgetItem, QLineEdit, QVBoxLayout, QPushButton, QHeaderView
-from qfluentwidgets import TableWidget, ComboBox, PushButton, LineEdit
+from qfluentwidgets import TableWidget, ComboBox, PushButton, LineEdit, InfoBar, InfoBarPosition
 from qfluentwidgets import FluentIcon as FIF
 
+
+def dec_sear(cls):
+    new_search = cls.search
+
+    def search(self):
+        InfoBar.success(
+            title='成功',
+            content=f"信息查询成功",
+            orient=QtCore.Qt.Horizontal,
+            isClosable=True,
+            position=InfoBarPosition.BOTTOM_LEFT,
+            duration=1200,  # won't disappear automatically
+            parent=self,
+        )
+        return new_search(self)
+
+    cls.search = search
+    return cls
+
+# todo 装饰器完善
+@dec_sear
 class Cust_search(QWidget):
     def __init__(self):
         self.flag = 0
@@ -19,11 +41,10 @@ class Cust_search(QWidget):
         db.close()
         print(data)
 
-
         # setTheme(Theme.DARK)
 
         self.vBoxLayout = QVBoxLayout(self)
-        #查询文本框
+        # 查询文本框
         self.search_edit = LineEdit(self)
         self.search_edit.setPlaceholderText("请输入查询内容")
         self.comboBox = ComboBox(self)
@@ -41,7 +62,7 @@ class Cust_search(QWidget):
         self.tableView = TableWidget(self)
 
         self.tableView.setWordWrap(False)
-        #data数量
+        # data数量
         self.tableView.setRowCount(len(data))
         self.tableView.setColumnCount(9)
         info = data
@@ -50,7 +71,8 @@ class Cust_search(QWidget):
                 self.tableView.setItem(i, j, QTableWidgetItem(str(songInfo[j])))
 
         self.tableView.verticalHeader().hide()
-        self.tableView.setHorizontalHeaderLabels(['客户编号','姓名','联系方式','性别','身份证号','民族','籍贯','用户名','密码'])
+        self.tableView.setHorizontalHeaderLabels(
+            ['客户编号', '姓名', '联系方式', '性别', '身份证号', '民族', '籍贯', '用户名', '密码'])
 
         self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # self.tableView.setSortingEnabled(True)
@@ -73,7 +95,7 @@ class Cust_search(QWidget):
             QTableView::item {
         padding-top: 20px; /* 设置上边距 */
         padding-bottom: 20px; /* 设置下边距 */
-    }''') # for demo purposes
+    }''')  # for demo purposes
 
         self.vBoxLayout.setContentsMargins(1, 1, 1, 1)
         self.hBoxLayout = QHBoxLayout()
@@ -87,13 +109,14 @@ class Cust_search(QWidget):
         self.vBoxLayout.addWidget(self.tableView)
         self.resize(625, 700)
         self.function()
+
     def function(self):
         self.pushButton.clicked.connect(self.search)
         self.comboBox.currentTextChanged.connect(self.select)
         self.pushButton2.clicked.connect(self.refresh)
 
     def search(self):
-        #在表格内搜索
+        # 在表格内搜索
 
         text = self.search_edit.text()
         for i in range(self.tableView.rowCount()):
@@ -101,10 +124,10 @@ class Cust_search(QWidget):
                 if self.tableView.item(i, self.flag).text() == text:
                     self.tableView.scrollToItem(self.tableView.item(i, self.flag))
                     for j in range(self.tableView.columnCount()):
-                        self.tableView.item(i, j).setBackground(QBrush(QColor(0, 200, 255,100)))
+                        self.tableView.item(i, j).setBackground(QBrush(QColor(0, 200, 255, 100)))
 
     def select(self):
-        #选择下拉框
+        # 选择下拉框
 
         text = self.comboBox.text()
         if text == '客户编号':
@@ -114,8 +137,9 @@ class Cust_search(QWidget):
         elif text == '用户名':
             self.flag = 7
         print(self.flag)
+
     def refresh(self):
-        #刷新
+        # 刷新
         self.tableView.clearContents()
 
         db = pymysql.connect(host='localhost',
@@ -133,4 +157,5 @@ class Cust_search(QWidget):
                 self.tableView.setItem(i, j, QTableWidgetItem(str(songInfo[j])))
 
         self.tableView.verticalHeader().hide()
-        self.tableView.setHorizontalHeaderLabels(['客户编号', '姓名', '联系方式', '性别', '身份证号', '民族', '籍贯', '用户名', '密码'])
+        self.tableView.setHorizontalHeaderLabels(
+            ['客户编号', '姓名', '联系方式', '性别', '身份证号', '民族', '籍贯', '用户名', '密码'])

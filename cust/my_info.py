@@ -38,6 +38,7 @@ class My_info(QWidget):
         self.lbl_password = QLabel('密    码：')
         self.edit_password = LineEdit()
         self.btn_submit = PushButton('修改')
+        self.btn_submit.setEnabled(False)
 
         # 创建布局并将控件添加到布局中
         hbox_id = QHBoxLayout()
@@ -111,6 +112,7 @@ class My_info(QWidget):
                 self.edit_hometown.setText(customer_info[6])
                 self.edit_username.setText(customer_info[7])
                 self.edit_password.setText(customer_info[8])
+                self.btn_submit.setEnabled(True)
         else:
                 self.edit_name.setText('')
                 self.edit_contact.setText('')

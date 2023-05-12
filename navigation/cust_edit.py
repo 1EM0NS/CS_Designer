@@ -11,6 +11,11 @@ def seteditstyle(edit):
 class Cust_edit(QWidget):
     def __init__(self):
         super().__init__()
+
+        # #定时器100ms判断editname是否为空，不为空则提交按钮可用
+        # self.timer = QtCore.QTimer()
+        # self.timer.timeout.connect(self.checkedit)
+
         self.flag = 0
         # 创建界面上的各个控件
         self.lbl_id = TextEdit()
@@ -98,16 +103,17 @@ class Cust_edit(QWidget):
         self.btn_search.clicked.connect(self.search_customer_info)
         self.btn_submit.clicked.connect(self.submit_customer_info)
 
-
     def selectionchange(self):
         if self.comboBox.currentIndex() == 0:
             self.btn_submit.setText('修改')
             self.flag = 0
         elif self.comboBox.currentIndex() == 1:
             self.btn_submit.setText('删除')
+            self.btn_submit.setEnabled(True)
             self.flag = 1
         elif self.comboBox.currentIndex() == 2:
             self.btn_submit.setText('新增')
+            self.btn_submit.setEnabled(True)
             self.flag = 2
     def search_customer_info(self):
         # 获取客户编号
