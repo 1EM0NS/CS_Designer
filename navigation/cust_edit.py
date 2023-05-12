@@ -12,10 +12,6 @@ class Cust_edit(QWidget):
     def __init__(self):
         super().__init__()
 
-        # #定时器100ms判断editname是否为空，不为空则提交按钮可用
-        # self.timer = QtCore.QTimer()
-        # self.timer.timeout.connect(self.checkedit)
-
         self.flag = 0
         # 创建界面上的各个控件
         self.lbl_id = TextEdit()
@@ -24,7 +20,6 @@ class Cust_edit(QWidget):
             'QTextEdit{background-color:rgba(255,255,255,0.5);border-radius:5px;padding:5px;font-size:20px;font-family:"Microsoft YaHei", sans-serif;blur:10px;}'
             'QTextEdit:hover{background-color:rgba(255,255,255,0.1);border-radius:5px;padding:5px;font-size:100px;}')
         self.lbl_id.setReadOnly(True)
-
         self.edit_id = SpinBox()
         self.edit_id.setRange(0, 999999999)
         self.btn_search = PushButton('客户信息获取')
