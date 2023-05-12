@@ -37,8 +37,8 @@
 | ~~生成收入报表~~     | 生成统计利润、成本等信息的报表                               |                                                  |
 | ~~生成订单报表~~     | 生成统计订单数量等信息的报表                                 |                                                  |
 --- 
-ER图：  
-<img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/ER.png" width="600" height="400">
+## ER图：  
+<img src="https://github.com/1EM0NS/CS_Designer/blob/master/exhibition/ER.png" width="800" height="400">
 
 ## 简介
 1. 该系统有三个主界面，分别为登录窗口、客户窗口以及员工后台管理窗口，每个窗口都有大于两个的子窗口，目前实现不包括res大概3k的代码量。
